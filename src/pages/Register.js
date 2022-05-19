@@ -1,22 +1,14 @@
 import { observer } from "mobx-react";
-
-import { useStores } from "../stores";
 import { useRef } from "react";
+import { useStores } from "../stores";
 import { Form, Input, Button } from "antd";
 import styles from "../styles/Register.module.css";
 
-export const Login = observer(() => {
-  const { AuthStore } = useStores();
+export const Register = observer(() => {
   const inputRef = useRef(null);
-  const onChange = (event) => {
-    console.log(inputRef.current.value);
+  const { AuthStore } = useStores();
+  const onChange = () => {
     AuthStore.setUsername(inputRef.current.value);
-  };
-  const validateUserName = (rule, value) => {
-    if (/\W/.test(value)) return Promise.reject("只能是数字字母下划线");
-    if (value.length < 4 || value.length > 10)
-      return Promise.reject("长度为4-10个字符");
-    return Promise.resolve();
   };
   const onFinish = (values) => {
     console.log("Success:", values);
@@ -25,14 +17,26 @@ export const Login = observer(() => {
   const onFinishFailed = (errorInfo) => {
     console.log("Failed:", errorInfo);
   };
+  const validateUserName = (rule, value) => {
+    if (/\W/.test(value)) return Promise.reject("只能是数字字母下划线");
+    if (value.length < 4 || value.length > 10)
+      return Promise.reject("长度为4-10个字符");
+    return Promise.resolve();
+  };
+
+  const validateConfirm = ({ getFieldValue }) => ({
+    //返回一个对象，需要用（）包起来
+    validator(rule, value) {
+      if (getFieldValue("password") === value) return Promise.resolve();
+      else return Promise.reject("两次密码不一致");
+    },
+  });
 
   return (
     <div className={styles.wrapper}>
-      {/*   <>
-      <h1>Login:{AuthStore.values.username}</h1>
-      <input onChange={onChange} ref={inputRef}></input>
-    </>  */}
-      <h1>登录</h1>
+      {/*  Register:{AuthStore.values.username}
+      <input ref={inputRef} onChange={onChange}></input> */}
+      <h1>注册</h1>
       <Form
         name="basic"
         labelCol={{
@@ -54,7 +58,7 @@ export const Login = observer(() => {
           rules={[
             {
               required: true,
-              message: "请输入用户名",
+              message: "请输入用户名！",
             },
             {
               validator: validateUserName,
@@ -70,8 +74,22 @@ export const Login = observer(() => {
           rules={[
             {
               required: true,
-              message: "请输入密码",
+              message: "请输入密码！",
             },
+          ]}
+        >
+          <Input.Password />
+        </Form.Item>
+
+        <Form.Item
+          label="再次输入"
+          name="confirmPassword"
+          rules={[
+            {
+              required: true,
+              message: "请再次确认密码！",
+            },
+            validateConfirm,
           ]}
         >
           <Input.Password />
