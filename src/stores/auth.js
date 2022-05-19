@@ -1,4 +1,4 @@
-import { observable, action } from "mobx";
+/* import { observable, action } from "mobx";
 
 class AuthStore {
   @observable isLogin = false;
@@ -39,8 +39,8 @@ class AuthStore {
   }
   @action logout(){
       console.log("注销成功")
-      
+
   }
 }
 
-export {AuthStore}
+export {AuthStore} */
