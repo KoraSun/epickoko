@@ -39,6 +39,7 @@ class AuthStore {
   }
   @action logout(){
       console.log("注销成功")
+      
   }
 }
 
