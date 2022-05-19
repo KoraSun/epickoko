@@ -8,6 +8,7 @@ import { Route, Routes } from "react-router-dom";
 import { Home } from "./pages/Home";
 import { History } from "./pages/History";
 import { About } from "./pages/About";
+import { Login } from "./pages/Login";
 
 /* const History = lazy(() => import("./pages/History"));
 const About = lazy(() => import("./pages/About")); */
@@ -22,6 +23,7 @@ function App() {
           <Route path="/" index element={<Home />} />
           <Route path="/history" element={<History />} />
           <Route path="/about" element={<About />} />
+          <Route path="/login" element={<Login />} />
         </Routes>
       </main>
       <Footer />
