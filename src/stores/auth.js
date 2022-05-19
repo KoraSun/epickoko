@@ -1,4 +1,4 @@
-/* import { observable, action } from "mobx";
+import { observable, action } from "mobx";
 
 class AuthStore {
   @observable isLogin = false;
@@ -43,4 +43,4 @@ class AuthStore {
   }
 }
 
-export {AuthStore} */
+export {AuthStore}
