@@ -1,8 +1,16 @@
-import React, { useState } from "react";
-import { NavLink, Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { NavLink, Link, Navigate, useNavigate } from "react-router-dom";
 import styles from "../styles/Header.module.css";
-export const Header = () => {
-  const [isLogin, setIslogin] = useState(false);
+import { useStores } from "../stores";
+import { observer } from "mobx-react";
+
+export const Header = observer(() => {
+  const { UserStore, AuthStore } = useStores();
+  const navigate = useNavigate();
+  const logoutHandle = () => {
+    AuthStore.logout();
+    navigate("/login");
+  };
   return (
     <header>
       <nav className={styles.nav}>
@@ -11,17 +19,18 @@ export const Header = () => {
           <NavLink to="/history">History</NavLink>
           <NavLink to="/about">About</NavLink>
         </div>
-        {isLogin ? (
+        {UserStore.currentUser ? (
           <div>
-            koko <button onClick={()=>{setIslogin(false)}} >Logout</button>
+            {UserStore.currentUser.attributes.username}
+            <button onClick={logoutHandle}>Logout</button>
           </div>
         ) : (
           <div>
-            <Link to="/login" onClick={()=>{}} >Login</Link>
-            <Link  to="/register" onClick={()=>{}}>Register</Link>
+            <Link to="/login">Login</Link>
+            <Link to="/register">Register</Link>
           </div>
         )}
       </nav>
     </header>
   );
-};
+});

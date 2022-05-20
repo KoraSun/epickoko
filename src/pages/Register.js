@@ -1,17 +1,25 @@
 import { observer } from "mobx-react";
-import { useRef } from "react";
 import { useStores } from "../stores";
 import { Form, Input, Button } from "antd";
+import { useNavigate } from 'react-router-dom';
 import styles from "../styles/Register.module.css";
 
 export const Register = observer(() => {
-  const inputRef = useRef(null);
   const { AuthStore } = useStores();
-  const onChange = () => {
-    AuthStore.setUsername(inputRef.current.value);
-  };
+  const navigate = useNavigate()
+
   const onFinish = (values) => {
     console.log("Success:", values);
+    AuthStore.setUsername(values.username);
+    AuthStore.setPassword(values.password);
+    AuthStore.register()
+      .then(() => {
+        console.log("注册成功");
+        navigate('/')
+      })
+      .catch(() => {
+        console.log("注册失败");
+      });
   };
 
   const onFinishFailed = (errorInfo) => {
@@ -34,8 +42,6 @@ export const Register = observer(() => {
 
   return (
     <div className={styles.wrapper}>
-      {/*  Register:{AuthStore.values.username}
-      <input ref={inputRef} onChange={onChange}></input> */}
       <h1>注册</h1>
       <Form
         name="basic"

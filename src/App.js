@@ -20,6 +20,7 @@ function App() {
       <main>
         <Routes>
           <Route path="/" index element={<Home />} />
+          <Route path="/home" index element={<Home />} />
           <Route path="/history" element={<History />} />
           <Route path="/about" element={<About />} />
           <Route path="/login" element={<Login />} />

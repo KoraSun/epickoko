@@ -1,17 +1,15 @@
 import { observer } from "mobx-react";
-
 import { useStores } from "../stores";
-import { useRef } from "react";
 import { Form, Input, Button } from "antd";
 import styles from "../styles/Register.module.css";
+import { useNavigate } from 'react-router-dom';
+
+
 
 export const Login = observer(() => {
   const { AuthStore } = useStores();
-  const inputRef = useRef(null);
-  const onChange = (event) => {
-    console.log(inputRef.current.value);
-    AuthStore.setUsername(inputRef.current.value);
-  };
+const navigate = useNavigate()
+ 
   const validateUserName = (rule, value) => {
     if (/\W/.test(value)) return Promise.reject("只能是数字字母下划线");
     if (value.length < 4 || value.length > 10)
@@ -20,6 +18,15 @@ export const Login = observer(() => {
   };
   const onFinish = (values) => {
     console.log("Success:", values);
+    AuthStore.setUsername(values.username)
+    AuthStore.setPassword(values.password) 
+    console.log(AuthStore.values)
+    AuthStore.login().then(()=>{
+      console.log("登录成功跳转")
+      navigate('/')
+    }).catch(()=>{
+      console.log("登录失败")
+    })
   };
 
   const onFinishFailed = (errorInfo) => {
@@ -28,10 +35,6 @@ export const Login = observer(() => {
 
   return (
     <div className={styles.wrapper}>
-      {/*   <>
-      <h1>Login:{AuthStore.values.username}</h1>
-      <input onChange={onChange} ref={inputRef}></input>
-    </>  */}
       <h1>登录</h1>
       <Form
         name="basic"
