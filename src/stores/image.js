@@ -8,7 +8,7 @@ class ImageStore {
   @observable file = null;
   @observable filename = "";
   @observable isLoading = false;
-  @observable serverFile=null;
+  @observable serverFile = null;
 
   @action setFilename(newFilename) {
     this.filename = newFilename;
@@ -24,7 +24,7 @@ class ImageStore {
       Uploader.add(this.file, this.filename)
         .then((serverFile) => {
           this.isLoading = false;
-          this.serverFile=serverFile
+          this.serverFile = serverFile;
           resolve(serverFile);
         })
         .catch((error) => {
@@ -38,4 +38,4 @@ class ImageStore {
   }
 }
 
-export default new UserStore();
+export default new ImageStore();

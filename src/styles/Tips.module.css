@@ -1,0 +1,26 @@
+.tips {
+  height: 50px;
+  line-height: 50px;
+  background-color: #76b7f1;
+  margin: 30px 0;
+  padding-left: 8px;
+  color: white;
+  font-size: 16px;
+}
+
+.result {
+  border: 1px dashed #ccc;
+  padding: 10px;
+  margin-top: 20px;
+}
+
+dl {
+  padding: 10px;
+}
+dd {
+  color: rgb(122, 120, 120);
+}
+dd a {
+  margin: 0;
+  color: rgb(122, 120, 120);
+}

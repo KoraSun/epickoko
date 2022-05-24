@@ -1,31 +1,27 @@
-.nav{
-    background-color: #02101f;
-    padding: 10px 100px;
-    display: flex;
-   justify-content: space-between;
-   color: white;
-  
+.nav {
+  background-color: #02101f;
+  padding: 10px 100px;
+  display: flex;
+  justify-content: space-between;
+  color: white;
 }
-a{
-    color: white;
-    margin: 25px;
-    border-bottom: 1px solid transparent;
-   
-   
+a {
+  color: white;
+  margin: 25px;
+  border-bottom: 1px solid transparent;
 }
 
-:global a.active{
-   border-bottom: 1px solid white;
+:global a.active {
+  border-bottom: 1px solid white;
 }
-   
-.left{
-    color: white;
+
+.left {
+  color: white;
 }
-button{
-    margin: 0 13px;
-    font-size: 14px;
-    background: #02101f;
-    border: 1px solid white;
-    color: white;
- 
+button {
+  margin: 0 13px;
+  font-size: 14px;
+  background: #02101f;
+  border: 1px solid white;
+  color: white;
 }
