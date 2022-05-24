@@ -3,6 +3,7 @@ import { observer } from "mobx-react";
 import { InboxOutlined } from "@ant-design/icons";
 import { Upload, message } from "antd";
 import styles from "../styles/Tips.module.css";
+import { useRef, useState } from "react";
 const { Dragger } = Upload;
 
 export const Uploader = observer(() => {
@@ -29,6 +30,26 @@ export const Uploader = observer(() => {
         });
       return false;
     },
+  };
+  const [state, setState] = useState({
+    width: null,
+    height: null,
+    fullUrl: "",
+  });
+  const widthRef = useRef();
+  const heightRef = useRef();
+  const widthChange = () => {
+    setState({ ...state, width: widthRef.current.value });
+  };
+  const heightChange = () => {
+    setState({ ...state, height: heightRef.current.value });
+  };
+  const fullStr = () => {
+    const widthStr = state.width ? `/w/${state.width}` : "";
+    const heightStr = state.height ? `/h/${state.height}` : "";
+    const url = ImageStore.serverFile.attributes.url.attributes.url;
+    const fullStr = url + "?imageView2/0" + widthStr + heightStr;
+    setState({ ...state, fullUrl: fullStr});
   };
 
   return (
@@ -62,8 +83,21 @@ export const Uploader = observer(() => {
             <dd>
               <img src={ImageStore.serverFile.attributes.url.attributes.url} />
             </dd>
+            <dt>尺寸裁剪：</dt>
+            宽度
+            <input ref={widthRef} onChange={widthChange} />
+            高度
+            <input ref={heightRef} onChange={heightChange} />
+            <br />
+            <button onClick={fullStr} className={styles.button}>
+              生成链接
+            </button>
+            <dd>
+              <a target="blank" href={state.fullUrl}>
+                {state.fullUrl}
+              </a>
+            </dd>
           </dl>
-          <div style={{ fontSize: "16px", paddingTop: "20px" }}></div>
         </div>
       ) : null}
     </div>

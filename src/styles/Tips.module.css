@@ -24,3 +24,14 @@ dd a {
   margin: 0;
   color: rgb(122, 120, 120);
 }
+
+.button {
+  margin: 10px 0 0 0;
+  background-color: #76b7f1;
+  color: white;
+  border-radius: 6px;
+  box-shadow: (0, 0, 0, 0.1 reba(0, 0, 200));
+}
+input {
+  margin: 10px;
+}
