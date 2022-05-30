@@ -1,6 +1,6 @@
 import { observer } from "mobx-react";
 import { useStores } from "../stores";
-import { Form, Input, Button } from "antd";
+import { Form, Input, Button,message } from "antd";
 import styles from "../styles/Register.module.css";
 import { useNavigate } from 'react-router-dom';
 
@@ -25,7 +25,7 @@ const navigate = useNavigate()
       console.log("登录成功跳转")
       navigate('/')
     }).catch(()=>{
-      console.log("登录失败")
+      message.warning("登录失败")
     })
   };
 

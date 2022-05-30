@@ -1,12 +1,12 @@
 import { observer } from "mobx-react";
 import { useStores } from "../stores";
-import { Form, Input, Button } from "antd";
-import { useNavigate } from 'react-router-dom';
+import { Form, Input, Button, message } from "antd";
+import { useNavigate } from "react-router-dom";
 import styles from "../styles/Register.module.css";
 
 export const Register = observer(() => {
   const { AuthStore } = useStores();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const onFinish = (values) => {
     console.log("Success:", values);
@@ -15,10 +15,10 @@ export const Register = observer(() => {
     AuthStore.register()
       .then(() => {
         console.log("注册成功");
-        navigate('/')
+        navigate("/");
       })
       .catch(() => {
-        console.log("注册失败");
+        message.warning("注册失败");
       });
   };
 
