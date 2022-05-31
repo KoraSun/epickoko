@@ -53,9 +53,9 @@ const Uploader = {
   },
   find(page = 0, limit = 10) {
     const query = new AV.Query("Image");
-    query.include('owner')
+    query.include("owner");
     query.equalTo("owner", AV.User.current());
-    query.descending('createdAt')
+    query.descending("createdAt");
     query.limit("limit", limit);
     query.skip(page * limit);
     return new Promise((resolve, reject) => {
@@ -69,6 +69,20 @@ const Uploader = {
       );
     });
   },
+  delete(id) {
+    const query = new AV.Query("Image");
+    query.get(id).then((result)=>{
+     result.destroy()
+    })
+  },
+  get(id){
+    const query = new AV.Query("Image");
+    query.get(id).then((result)=>{
+      console.log(result)
+    })
+  },
+
+  
 };
 
 export { Auth, Uploader };

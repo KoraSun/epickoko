@@ -3,6 +3,7 @@
   padding: 10px 100px;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   color: white;
 }
 a {
@@ -24,4 +25,10 @@ button {
   background: #02101f;
   border: 1px solid white;
   color: white;
+}
+
+.logo{
+ 
+  height: 40px;
+  margin-right: 12px;
 }
