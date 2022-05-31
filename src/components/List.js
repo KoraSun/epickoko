@@ -1,10 +1,16 @@
 import { useStores } from "../stores";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { Divider, List } from "antd";
+import { Divider, List, Popconfirm,message} from "antd";
 import { useEffect, useState } from "react";
 import { observer } from "mobx-react-lite";
 
 export const Lists = observer(() => {
+
+  const cancel = (e) => {
+    console.log(e);
+    message.error("取消删除");
+  };
+
   const { HistoryStore, ImageStore } = useStores();
   const [loading, setLoading] = useState(false);
   const loadMoreData = () => {
@@ -61,13 +67,17 @@ export const Lists = observer(() => {
                   {item.attributes.url.attributes.url}
                 </a>
               </div>
-              <button
-                onClick={() => {
-                  HistoryStore.delete(item.id);
-                }}
-              >
-                delete
-              </button>
+
+             
+              <Popconfirm
+                title="确定删除这张照片吗?"
+                onConfirm={()=>{HistoryStore.delete(item.id)}}
+                onCancel={cancel}
+                okText="Yes"
+                cancelText="No"
+              > 
+                <button>Delete</button>
+              </Popconfirm>
             </List.Item>
           )}
         />

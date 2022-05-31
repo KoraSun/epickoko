@@ -1,5 +1,5 @@
 import "./App.css";
-import 'antd/dist/antd.css'
+import "antd/dist/antd.css";
 import { Header } from "./components/Header";
 import { Footer } from "./components/Footer";
 import { Route, Routes } from "react-router-dom";
@@ -9,13 +9,9 @@ import { About } from "./pages/About";
 import { Login } from "./pages/Login";
 import { Register } from "./pages/Register";
 
-/* const History = lazy(() => import("./pages/History"));
-const About = lazy(() => import("./pages/About")); */
-
 function App() {
   return (
     <>
-      {/* <img src={logo} className="App-logo" alt="logo" /> */}
       <Header />
       <main>
         <Routes>
@@ -24,8 +20,7 @@ function App() {
           <Route path="/history" element={<History />} />
           <Route path="/about" element={<About />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register/>} />
-
+          <Route path="/register" element={<Register />} />
         </Routes>
       </main>
       <Footer />

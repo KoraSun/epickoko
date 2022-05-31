@@ -2,7 +2,7 @@ import React from "react"
 export const Footer=()=>{
     return(
     <footer>
-     Footer
+     KOKO2022
     </footer>
     )
 }

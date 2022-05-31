@@ -1,0 +1,16 @@
+.layout{
+    font-size: 18px;
+    padding: 12px;
+    font-family: 'Courier Prime', monospace;
+}
+ul{
+    padding: 12px;
+}
+.link{
+    color: #2866e2;
+   margin-left: 10px;
+   font-family: 'Courier New', Courier, monospace;
+}
+strong{
+    color:#4b81eb;
+}

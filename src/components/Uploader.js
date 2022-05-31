@@ -77,7 +77,7 @@ export const Uploader = observer(() => {
         </Dragger>
       </Spin>
 
-      {ImageStore.serverFile ? (
+      {ImageStore.serverFile&&UserStore.currentUser ? (
         <div className={styles.result}>
           <h1>上传结果</h1>
           <dl>
